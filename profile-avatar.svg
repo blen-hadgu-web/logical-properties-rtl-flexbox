@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title">
+  <title id="title">Portrait illustration of Sasha Dupont</title>
+  <rect width="180" height="180" rx="32" fill="oklch(90% 0.06 255)"/>
+  <circle cx="90" cy="67" r="35" fill="oklch(72% 0.08 55)"/>
+  <path d="M47 164c4-40 21-58 43-58s39 18 43 58Z" fill="oklch(48% 0.18 255)"/>
+  <path d="M55 57c2-31 24-43 43-35 18 7 28 26 22 50-6-12-18-21-33-21-12 0-23 4-32 12Z" fill="oklch(29% 0.06 35)"/>
+  <circle cx="77" cy="68" r="3" fill="oklch(20% 0.03 260)"/>
+  <circle cx="104" cy="68" r="3" fill="oklch(20% 0.03 260)"/>
+  <path d="M80 84c7 6 14 6 21 0" fill="none" stroke="oklch(42% 0.1 25)" stroke-width="3" stroke-linecap="round"/>
+</svg>

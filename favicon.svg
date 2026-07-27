@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Internationalized logical layout</title>
+  <rect width="64" height="64" rx="14" fill="oklch(48% 0.18 255)"/>
+  <path d="M11 23h30l-8-8M41 23l-8 8M53 41H23l8-8M23 41l8 8" fill="none" stroke="oklch(99% 0 0)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

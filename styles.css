@@ -1,0 +1,451 @@
+@layer reset, tokens, base, components, utilities;
+
+@layer tokens {
+  :root {
+    --color-canvas: oklch(97% 0.015 250);
+    --color-surface: oklch(100% 0 0);
+    --color-surface-muted: oklch(94% 0.025 250);
+    --color-text: oklch(22% 0.03 260);
+    --color-text-muted: oklch(44% 0.035 260);
+    --color-accent: oklch(48% 0.18 255);
+    --color-accent-strong: oklch(41% 0.17 255);
+    --color-on-accent: oklch(99% 0 0);
+    --color-success: oklch(45% 0.13 155);
+    --color-success-surface: oklch(93% 0.05 155);
+    --color-border: oklch(82% 0.025 250);
+    --color-focus: oklch(60% 0.19 70);
+    --color-shadow: oklch(18% 0.03 260 / 0.14);
+
+    --size-small: clamp(0.82rem, 0.79rem + 0.14vw, 0.92rem);
+    --size-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    --size-heading-sm: clamp(1.2rem, 1.1rem + 0.4vw, 1.5rem);
+    --size-heading-lg: clamp(1.9rem, 1.55rem + 1.45vw, 3rem);
+
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 4.5rem;
+
+    --radius-sm: 0.55rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+
+    --content-width: 76rem;
+    --card-width: 34rem;
+    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Noto Sans Arabic", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-canvas: oklch(18% 0.03 260);
+      --color-surface: oklch(22% 0.035 260);
+      --color-surface-muted: oklch(27% 0.04 260);
+      --color-text: oklch(94% 0.015 250);
+      --color-text-muted: oklch(76% 0.025 250);
+      --color-accent: oklch(72% 0.14 255);
+      --color-accent-strong: oklch(79% 0.12 255);
+      --color-on-accent: oklch(18% 0.03 260);
+      --color-success: oklch(75% 0.12 155);
+      --color-success-surface: oklch(29% 0.055 155);
+      --color-border: oklch(39% 0.035 260);
+      --color-focus: oklch(82% 0.16 80);
+      --color-shadow: oklch(5% 0.02 260 / 0.38);
+    }
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  button {
+    font: inherit;
+  }
+}
+
+@layer base {
+  body {
+    min-inline-size: 20rem;
+    min-block-size: 100svh;
+    background:
+      radial-gradient(
+        circle at 85% 8%,
+        oklch(72% 0.14 255 / 0.14),
+        oklch(72% 0.14 255 / 0) 32rem
+      ),
+      var(--color-canvas);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--size-body);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--size-heading-lg);
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-size: var(--size-heading-sm);
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    font-size: var(--size-body);
+  }
+
+  :focus-visible {
+    outline: 0.2rem solid var(--color-focus);
+    outline-offset: 0.2rem;
+  }
+
+  code {
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-muted);
+    padding-inline: 0.25em;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 0.9em;
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: fixed;
+    z-index: 50;
+    inset-block-start: var(--space-xs);
+    inset-inline-start: var(--space-xs);
+    transform: translateY(-180%);
+    border-radius: var(--radius-sm);
+    background: var(--color-text);
+    color: var(--color-canvas);
+    padding-block: var(--space-2xs);
+    padding-inline: var(--space-sm);
+    font-weight: 800;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  .page-header,
+  .demo-section,
+  .page-footer {
+    inline-size: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+  }
+
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-block: clamp(var(--space-xl), 7vw, var(--space-2xl));
+    text-align: start;
+  }
+
+  .page-header__eyebrow {
+    color: var(--color-accent);
+    font-size: var(--size-small);
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .page-header > p:last-child {
+    max-inline-size: 64ch;
+    color: var(--color-text-muted);
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    padding-block-end: var(--space-2xl);
+  }
+
+  .demo-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .demo-section__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    text-align: start;
+  }
+
+  .demo-section__header p {
+    color: var(--color-text-muted);
+  }
+
+  .app-layout,
+  .notification-layout {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+
+  .settings-card {
+    display: flex;
+    flex: 1 1 var(--card-width);
+    flex-direction: column;
+    min-inline-size: 0;
+    max-inline-size: var(--card-width);
+    overflow: hidden;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: 0 1.2rem 3rem var(--color-shadow);
+    text-align: start;
+  }
+
+  .settings-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    border-block-end: 0.0625rem solid var(--color-border);
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-lg);
+  }
+
+  .settings-card__subtitle {
+    color: var(--color-text-muted);
+  }
+
+  .settings-card__profile-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding-block: var(--space-lg);
+    padding-inline: var(--space-lg);
+  }
+
+  .profile-avatar {
+    flex: none;
+    inline-size: 5rem;
+    block-size: 5rem;
+    border: 0.2rem solid var(--color-surface-muted);
+    border-radius: 999rem;
+    background: var(--color-surface-muted);
+    object-fit: cover;
+  }
+
+  .profile-info {
+    display: flex;
+    flex: 1 1 10rem;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    min-inline-size: 0;
+  }
+
+  .profile-info__name {
+    font-weight: 850;
+  }
+
+  .profile-info__status {
+    color: var(--color-success);
+    font-size: var(--size-small);
+    font-weight: 750;
+  }
+
+  .settings-card__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    border-block-start: 0.0625rem solid var(--color-border);
+    background: var(--color-surface-muted);
+    padding-block: var(--space-md);
+    padding-inline: var(--space-lg);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 2.75rem;
+    border-radius: var(--radius-sm);
+    padding-block: var(--space-2xs);
+    padding-inline: var(--space-sm);
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .btn--primary {
+    border: 0.0625rem solid var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-accent-strong);
+  }
+
+  .btn--secondary {
+    border: 0.0625rem solid var(--color-border);
+    background: var(--color-surface-muted);
+    color: var(--color-text);
+  }
+
+  .btn--text {
+    border: 0.0625rem solid transparent;
+    background: transparent;
+    color: var(--color-text-muted);
+  }
+
+  .notification-card {
+    display: flex;
+    align-items: center;
+    flex: 1 1 26rem;
+    gap: var(--space-sm);
+    min-inline-size: 0;
+    max-inline-size: var(--card-width);
+    border: 0.0625rem solid
+      color-mix(in oklch, var(--color-success) 55%, var(--color-border));
+    border-radius: var(--radius-md);
+    background: var(--color-success-surface);
+    padding-block: var(--space-md);
+    padding-inline: var(--space-md);
+    text-align: start;
+    box-shadow: 0 0.8rem 2rem var(--color-shadow);
+  }
+
+  .notification-card__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 999rem;
+    background: var(--color-success);
+    color: var(--color-surface);
+    font-weight: 900;
+  }
+
+  .notification-card__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    min-inline-size: 0;
+  }
+
+  .notification-card__content p {
+    color: var(--color-text-muted);
+    font-size: var(--size-small);
+  }
+
+  .notification-card__dismiss {
+    display: grid;
+    flex: none;
+    place-items: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border: 0.0625rem solid transparent;
+    border-radius: 999rem;
+    background: transparent;
+    color: var(--color-text);
+    font-size: var(--size-heading-sm);
+    cursor: pointer;
+  }
+
+  .notification-card__dismiss:hover {
+    border-color: var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .page-footer {
+    border-block-start: 0.0625rem solid var(--color-border);
+    color: var(--color-text-muted);
+    padding-block: var(--space-lg);
+    text-align: start;
+  }
+}
+
+@layer utilities {
+  @media (max-width: 34rem) {
+    .settings-card__profile-section {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .profile-avatar {
+      align-self: flex-start;
+    }
+
+    .btn--secondary {
+      inline-size: 100%;
+    }
+
+    .settings-card__actions {
+      flex-direction: column;
+    }
+
+    .settings-card__actions .btn {
+      inline-size: 100%;
+    }
+
+    .notification-card {
+      align-items: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  @media print {
+    .skip-link {
+      display: none;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .settings-card,
+    .notification-card {
+      box-shadow: none;
+    }
+  }
+}

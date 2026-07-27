@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Responsive LTR and RTL profile settings and notification cards built with Flexbox gaps and internationalized logical CSS properties."
+  >
+  <meta name="author" content="Blen Hadgu">
+  <meta name="color-scheme" content="light dark">
+  <title>Week 03: Logical Properties Lab</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#settings-demo">Skip to settings cards</a>
+
+  <header class="page-header">
+    <p class="page-header__eyebrow">Week 03 · Internationalized interface lab</p>
+    <h1>Logical Properties &amp; Flexbox Gutters</h1>
+    <p>
+      The same component classes adapt automatically to English and Arabic writing
+      directions without duplicated layout rules.
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" id="settings-demo" aria-labelledby="settings-title">
+      <header class="demo-section__header">
+        <h2 id="settings-title">Profile settings symmetry</h2>
+        <p>
+          Compare the English left-to-right card with the Arabic right-to-left card.
+        </p>
+      </header>
+
+      <div class="app-layout">
+        <!-- COMPONENT 1: English settings card -->
+        <section class="settings-card" dir="ltr" lang="en" aria-labelledby="english-title">
+          <header class="settings-card__header">
+            <h2 class="settings-card__title" id="english-title">Profile Settings</h2>
+            <p class="settings-card__subtitle">
+              Manage your public directory information.
+            </p>
+          </header>
+
+          <div class="settings-card__profile-section">
+            <img
+              src="profile-avatar.svg"
+              alt="Portrait illustration of Sasha Dupont"
+              class="profile-avatar"
+              width="180"
+              height="180"
+            >
+
+            <div class="profile-info">
+              <h3 class="profile-info__name">Sasha Dupont</h3>
+              <span class="profile-info__status">Active Editor</span>
+            </div>
+
+            <button class="btn btn--secondary" type="button">
+              Change Photo
+            </button>
+          </div>
+
+          <footer class="settings-card__actions">
+            <button class="btn btn--text" type="button">Cancel</button>
+            <button class="btn btn--primary" type="button">Save Changes</button>
+          </footer>
+        </section>
+
+        <!-- COMPONENT 2: Arabic settings card -->
+        <section class="settings-card" dir="rtl" lang="ar" aria-labelledby="arabic-title">
+          <header class="settings-card__header">
+            <h2 class="settings-card__title" id="arabic-title">
+              إعدادات الملف الشخصي
+            </h2>
+            <p class="settings-card__subtitle">
+              إدارة معلومات الدليل العام الخاص بك.
+            </p>
+          </header>
+
+          <div class="settings-card__profile-section">
+            <img
+              src="profile-avatar.svg"
+              alt="صورة توضيحية لساشا دوبونت"
+              class="profile-avatar"
+              width="180"
+              height="180"
+            >
+
+            <div class="profile-info">
+              <h3 class="profile-info__name">ساشا دوبونت</h3>
+              <span class="profile-info__status">محرر نشط</span>
+            </div>
+
+            <button class="btn btn--secondary" type="button">
+              تغيير الصورة
+            </button>
+          </div>
+
+          <footer class="settings-card__actions">
+            <button class="btn btn--text" type="button">إلغاء</button>
+            <button class="btn btn--primary" type="button">
+              حفظ التغييرات
+            </button>
+          </footer>
+        </section>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="notification-title">
+      <header class="demo-section__header">
+        <h2 id="notification-title">Interactive notification symmetry</h2>
+        <p>
+          The same Flexbox notification structure mirrors through the
+          <code>dir</code> attribute.
+        </p>
+      </header>
+
+      <div class="notification-layout">
+        <article class="notification-card" dir="ltr" lang="en">
+          <span class="notification-card__icon" aria-hidden="true">✓</span>
+
+          <section class="notification-card__content" aria-labelledby="notice-en-title">
+            <h3 id="notice-en-title">Profile saved</h3>
+            <p>Your public information was updated successfully.</p>
+          </section>
+
+          <button
+            class="notification-card__dismiss"
+            type="button"
+            aria-label="Dismiss notification"
+          >
+            ×
+          </button>
+        </article>
+
+        <article class="notification-card" dir="rtl" lang="ar">
+          <span class="notification-card__icon" aria-hidden="true">✓</span>
+
+          <section class="notification-card__content" aria-labelledby="notice-ar-title">
+            <h3 id="notice-ar-title">تم حفظ الملف الشخصي</h3>
+            <p>تم تحديث معلوماتك العامة بنجاح.</p>
+          </section>
+
+          <button
+            class="notification-card__dismiss"
+            type="button"
+            aria-label="إغلاق الإشعار"
+          >
+            ×
+          </button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Created by Blen Hadgu · Logical properties and Flexbox gutters</p>
+  </footer>
+</body>
+</html>
