@@ -28,9 +28,7 @@ logical-properties-rtl-flexbox/
 ├── index.html
 ├── profile-avatar.svg
 ├── README.md
-├── SUBMISSION.txt
 ├── TESTING-CHECKLIST.md
-├── VIDEO-SCRIPT.md
 └── styles.css
 ```
 
